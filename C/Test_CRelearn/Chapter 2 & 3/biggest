@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+/*
+scan three inputs and use if statements to print the largest
+*/
+int main(int argc, char *argv[]){
+    int size;
+    printf("\nEnter size of array > ");
+    scanf("%d", &size);
+    int array[size];
+    for (int i = 0; i < size, i++ ){
+        if (array[i] > array[i++]) {
+
+        }
+
+
+        }
+
+        else () {
+
+        } 
+    
+    } 
+
+    return (0);
+}

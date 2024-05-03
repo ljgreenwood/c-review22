@@ -1,0 +1,18 @@
+SEQ     PUSH.W  R6
+        PUSH.W  R10
+        MOV.W   #0007,    R10 	; word length in bits (16) - pattern length in bits (10) + 1 = 7
+LOOP    MOV.W   R5,     R6 	; move R5 value into R6 for manipulation
+        AND.W   #03CF,  R6 	; mask value in R6
+        CMP.W   #028A,  R6 	; compare masked R6 with pattern 1010xx1010
+        JNZ SKIP
+        {
+        CLR.W   R5 		; clear at first occurrence
+        JUMP    DONE		; jump to exit
+        }
+SKIP    RRC.W   R5 		; rotate with right with carry R5 values
+        DEC.B   R10 		; decrement loop counter (lower byte: upper byte is 00)
+        JNZ     LOOP 		; if loop counter != 0, repeat
+        MOV.W   #FFFF,	R5 	; if loop counter == 0, set R5 to FFFF
+DONE    POP.W   R10
+        POP.W   R6
+        RET

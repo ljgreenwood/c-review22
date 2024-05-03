@@ -1,0 +1,13 @@
+ADDARRAY    PUSH R5
+            PUSH R6
+            PUSH R7
+LOOP        MOV.W @R5+, R7
+            CMP.W # '*', R7
+            JZ DONE
+            ADD.W R7, 0(R6)
+            INCD.W R6
+            JMP LOOP
+DONE        POP R7
+            POP R6
+            POP R5
+            RET
